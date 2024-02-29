@@ -1,0 +1,23 @@
+<div class="grid py-3">
+    <div class="col-6 col-offset-3">
+    <p-card class="p-d-flex p-flex-column p-jc-center p-ai-center" [style]="{ width: '30vw' }">
+      <div class="text-center mb-5">
+        <img src="assets/images/blocks/logos/hyper.svg" alt="Image" height="50" class="mb-3">
+        <div class="text-900 text-3xl font-medium mb-3">Bienvenido</div>
+      </div>
+      <div>
+        <form [formGroup]="logInForm" (ngSubmit)="onLogin()" autocomplete="off" class="p-fluid">
+          <div class="p-field">
+            <label for="username">Email</label>
+            <input id="username" type="text" pInputText formControlName="email">
+          </div>
+          <div class="p-field mb-3">
+            <label for="password">Contraseña</label>
+            <input id="password" type="password" pInputText formControlName="password">
+          </div>
+          <button type="submit" pButton pRipple label="Ingresar" icon="pi pi-user" class="w-full"></button>
+        </form>
+      </div>
+      </p-card>
+    </div>
+    </div>
