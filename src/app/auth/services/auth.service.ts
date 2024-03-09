@@ -33,6 +33,10 @@ export class AuthService {
       );
   }
 
+  register( user:User ):Observable<User> {
+    return this.http.post<User>(`${ this.baseUrl }/api/register`, user);
+  }
+
 
   logout() {
     this.user = undefined;

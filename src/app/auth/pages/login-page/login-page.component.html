@@ -2,7 +2,7 @@
     <div class="col-6 col-offset-3">
     <p-card class="p-d-flex p-flex-column p-jc-center p-ai-center" [style]="{ width: '30vw' }">
       <div class="text-center mb-5">
-        <img src="assets/images/blocks/logos/hyper.svg" alt="Image" height="50" class="mb-3">
+        <img src="https://t4.ftcdn.net/jpg/04/60/71/01/360_F_460710131_YkD6NsivdyYsHupNvO3Y8MPEwxTAhORh.jpg" alt="Image" height="50" class="mb-3">
         <div class="text-900 text-3xl font-medium mb-3">Bienvenido</div>
       </div>
       <div>
@@ -15,7 +15,8 @@
             <label for="password">Contraseña</label>
             <input id="password" type="password" pInputText formControlName="password">
           </div>
-          <button type="submit" pButton pRipple label="Ingresar" icon="pi pi-user" class="w-full"></button>
+          <button type="submit" pButton pRipple label="Ingresar" icon="pi pi-lock" class="w-full mb-2"></button>
+          <p-button [icon]="'pi pi-user-plus'" pRipple label="Regisrarse" class="w-full" (onClick) = "onRgister($event)"></p-button>
         </form>
       </div>
       </p-card>
