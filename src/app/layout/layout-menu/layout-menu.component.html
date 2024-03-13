@@ -1,0 +1,7 @@
+<div class="card">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="end">
+            <p-button [severity]="currentUser!=undefined ? 'danger' :'success'" [icon]=" currentUser!=undefined ? 'pi pi-sign-out' : 'pi pi-sign-in'" [size]="'small'" (onClick) = "onClickLogin($event)"></p-button>
+        </ng-template>
+    </p-menubar>
+</div>

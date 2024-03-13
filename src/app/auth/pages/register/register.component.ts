@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AvatarService } from '../../../shared/services/avatar.service';
-import { Avatar } from '../../../shared/models/avatar';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../../interfaces/user.interface';
 
 @Component({
-  selector: 'app-register-avatar',
-  templateUrl: './register-avatar.component.html',
-  styleUrl: './register-avatar.component.css'
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css'
 })
-export class RegisterAvatarComponent {
+export class RegisterComponent {
+
   public registerForm: FormGroup = this.fb.group({
     name:[''],
     email:[''],
@@ -21,16 +22,17 @@ export class RegisterAvatarComponent {
   });
 
   constructor( private fb: FormBuilder,
-    private avatarService: AvatarService,
+    private authService: AuthService,
     private router: Router){}
+
 
     onRegister(){
       if (this.registerForm.valid) {
-        const avatarData: Avatar = this.registerForm.value;
-        console.log(avatarData)
-        this.avatarService.registerAvatar(avatarData).subscribe({
+        const userData: User = this.registerForm.value;
+        console.log(userData)
+        this.authService.register(userData).subscribe({
           next: value =>{
-            
+            this.router.navigate(['/auth/login']);
           },
           error: err => console.error('Observable emitted an error: ' + err),
         })
