@@ -13,6 +13,16 @@ const routes: Routes = [
     loadChildren: () => import('./user/user.module').then( m => m.UserModule ),
     canActivate: [authCanActivateGuard]
   },
+  {
+    path: 'playlists',
+    loadChildren: () => import('./play_list/play-list.module').then( m => m.PlayListModule ),
+    canActivate: [authCanActivateGuard]
+  },
+  {
+    path: 'videos',
+    loadChildren: () => import('./video/video.module').then( m => m.VideoModule ),
+    canActivate: [authCanActivateGuard]
+  },
   {path:'**', component: HomeComponent}
 ];
 

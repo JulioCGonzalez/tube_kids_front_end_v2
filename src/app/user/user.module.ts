@@ -7,6 +7,8 @@ import { AvatarPageComponent } from './pages/avatar-page/avatar-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterAvatarComponent } from './pages/register-avatar/register-avatar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditAvatarComponent } from './pages/edit-avatar/edit-avatar.component';
+import { AvatarPlayListComponent } from './pages/avatar-play-list/avatar-play-list.component';
 
 
 
@@ -15,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LayoutPageComponent,
     AvatarPageComponent,
     RegisterAvatarComponent,
+    EditAvatarComponent,
+    AvatarPlayListComponent,
   ],
   imports: [
     CommonModule,

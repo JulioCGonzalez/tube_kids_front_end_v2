@@ -1,39 +1,21 @@
 <form [formGroup]="registerForm" (ngSubmit)="onRegister()" autocomplete="off" class="p-fluid">
     <div class="formgrid grid">
-        <div class="field col-12 md:col-6">
-            <label for="nombre">Nombre</label>
-            <input id="nombre" formControlName="name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
-        <div class="field col-12 md:col-6">
-            <label for="apellido">Apellido</label>
-            <input id="apellido" formControlName="last_name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        <div class="field col-12">
+            <label for="nombreCompleto">Nombre Completo *</label>
+            <input id="nombreCompleto" formControlName="full_name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
         <div class="field col-12">
-            <label for="email">Email</label>
-            <input id="email" formControlName="email" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
-        <div class="field col-12 md:col-6" >
-            <label for="password">Contraseña</label>
-            <input id="password" formControlName="password" type="password" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
-        <div class="field col-12 md:col-6">
-          <label for="password">Confirmar Contraseña</label>
-          <input id="password"  type="password" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      </div>
-        <div class="field col-12">
-            <label for="pais">País</label>
-            <input id="pais" formControlName="country" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <label for="pin">PIN *</label>
+            <input id="pin" formControlName="pin" type="number" minlength="6" maxlength="6" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
         <div class="field col-12">
-            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-            <input id="fecha_nacimiento" formControlName="birth_date" type="date" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <label for="edad">Edad</label>
+            <input id="edad" formControlName="age" type="number" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
         <div class="field col-12">
-          <label for="pin">Pin</label>
-          <input id="pin" formControlName="pin"  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <label for="avatar">Avatar</label>
+            <input id="avatar" formControlName="avatar" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
-        <button type="submit" pButton pRipple label="Regisrarse" icon="pi pi-user-plus" class="w-full my-2"></button>
+        <button type="submit" pButton pRipple label="Registrarse" icon="pi pi-user-plus" class="w-full my-2"></button>
     </div>
-    </form>
-    
-    
+</form>

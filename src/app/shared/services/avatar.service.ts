@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Avatar } from '../models/avatar';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,9 @@ export class AvatarService {
 
 
   registerAvatar( avatar: Avatar ):Observable<Avatar> {
-    return this.http.post<Avatar>(`${ this.baseUrl }/api/registerAvatar`, avatar);
+     const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.post<Avatar>(`${ this.baseUrl }/api/avatars`, avatar, {headers});
   }
 }

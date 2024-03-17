@@ -1,6 +1,7 @@
 export interface Avatar{
     pin?: number;
-    edad?: number;
-    nombre?:string;
+    age?: number;
+    full_name?:string;
     avatar?:string;
+    user_id?: number;
 }

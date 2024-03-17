@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap, of, map, catchError } from 'rxjs';
 import { User } from '../interfaces/user.interface';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -33,6 +33,19 @@ export class AuthService {
       );
   }
 
+  me():Observable<boolean> {
+    if(!localStorage.getItem('token')) return of(false);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.post<User>(`${ this.baseUrl }/api/me`, null, {headers})
+      .pipe(
+        tap( user => {this.currentUserSubject.next(this.refreshUserData(user)); }),
+        map( user => !!this.currentUserLog),
+        catchError( err => of(false))
+      );
+  }
+
   register( user:User ):Observable<User> {
     return this.http.post<User>(`${ this.baseUrl }/api/register`, user);
   }
@@ -63,6 +76,21 @@ export class AuthService {
         name: tokenData.name
       }
       return user;
+    }
+    return undefined;
+  }
+
+  refreshUserData(user: any = ''): User | undefined {
+    if(user){
+      const userRefreshed: User = {
+        email: user.email,
+        name: user.name,
+        id: user.id,
+        country: user.country,
+        avatars: user.avatars,
+        pin: user.pin
+      }
+      return userRefreshed;
     }
     return undefined;
   }
