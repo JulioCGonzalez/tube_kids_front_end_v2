@@ -4,6 +4,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { User } from '../../../auth/interfaces/user.interface';
 import Swal from 'sweetalert2';
 import { Avatar } from '../../../shared/models/avatar';
+import { AvatarService } from '../../../shared/services/avatar.service';
 
 @Component({
   selector: 'app-avatar-page',
@@ -11,22 +12,38 @@ import { Avatar } from '../../../shared/models/avatar';
   styleUrl: './avatar-page.component.css'
 })
 export class AvatarPageComponent {
-
-  user?: User = undefined;
+  loading: boolean = false;
+  avatars?: Avatar[] = [];
   constructor(
     private authService: AuthService,
+    private avatarService: AvatarService,
     private router: Router){}
 
   ngOnInit(): void {
-    this.user = this.authService.currentUserLog;
+    this.loadAvatars();
   }
+
+  loadAvatars(){
+    this.loading = true;
+    this.avatarService.getAvatarsByUser().subscribe({
+      next: avatars =>{
+        this.avatars = avatars;
+        this.loading = false;
+      },
+      error: err => {
+        this.loading = false;
+        console.error('Observable emitted an error: ' + err);
+      }
+    })
+  }
+
   onRegister(event: any){
     this.router.navigate(['/users/register']);
   }
   onAdminVideos(event: any){
     Swal.fire({
       title: "Introduzca el pin",
-      input: "text",
+      input: "password",
       inputAttributes: {
         autocapitalize: "off"
       },
@@ -53,7 +70,7 @@ export class AvatarPageComponent {
     Swal.fire({
       title: "Introduzca su pin de usuario",
       html:
-        '<input type="number" id="swal-input1" class="swal2-input" placeholder="Pin">' +
+        '<input type="password" id="swal-input1" class="swal2-input" placeholder="Pin">' +
         '<select id="swal-input2" class="swal2-select">' +
         '  <option value="user">User</option>' +
         '  <option value="avatar">Avatar</option>' +

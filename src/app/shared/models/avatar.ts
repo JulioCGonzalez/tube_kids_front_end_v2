@@ -4,4 +4,5 @@ export interface Avatar{
     full_name?:string;
     avatar?:string;
     user_id?: number;
+    id?: number;
 }

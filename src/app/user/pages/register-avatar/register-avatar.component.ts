@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AvatarService } from '../../../shared/services/avatar.service';
 import { Avatar } from '../../../shared/models/avatar';
 import { Router } from '@angular/router';
@@ -11,18 +11,31 @@ import Swal from 'sweetalert2';
   templateUrl: './register-avatar.component.html',
   styleUrl: './register-avatar.component.css'
 })
-export class RegisterAvatarComponent {
+export class RegisterAvatarComponent implements OnInit {
   public registerForm: FormGroup = this.fb.group({
-    full_name:[''],
+    full_name:['', [Validators.required]],
     pin:[''],
     avatar:[''],
     age:['']
   });
 
+  avatars: any[] =[];
+
   constructor( private fb: FormBuilder,
     private avatarService: AvatarService,
     private authService: AuthService,
     private router: Router){}
+
+    ngOnInit(): void {
+      this.avatars = [
+        { name: 'Hombre', url: 'male.png' },
+        { name: 'Mujer', url: 'female.png' },
+      ];
+    }
+
+    get fg() {
+      return this.registerForm.controls;
+    }
 
     onRegister(){
       if (this.registerForm.valid) {
@@ -50,6 +63,5 @@ export class RegisterAvatarComponent {
           }
         })
       }
-     
     }
 }

@@ -7,8 +7,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
 import { PasswordModule } from 'primeng/password';
 import { TableModule } from 'primeng/table';
-
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [],
   imports: [
@@ -19,7 +20,10 @@ import { TableModule } from 'primeng/table';
     InputTextModule,
     CardModule,
     PasswordModule,
-    TableModule
+    TableModule,
+    ProgressSpinnerModule,
+    RadioButtonModule,
+    DropdownModule
   ],
   exports: [
     MenubarModule,
@@ -28,7 +32,10 @@ import { TableModule } from 'primeng/table';
     InputTextModule,
     CardModule,
     PasswordModule,
-    TableModule
+    TableModule,
+    ProgressSpinnerModule,
+    RadioButtonModule,
+    DropdownModule
   ]
 })
 export class PrimengModule { }

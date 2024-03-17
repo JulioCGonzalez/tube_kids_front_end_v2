@@ -1,21 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../../../auth/interfaces/user.interface';
+import { Video } from '../../../shared/models/video';
+import { PlayListService } from '../../../shared/services/play-list.service';
 
 @Component({
   selector: 'app-video-page',
   templateUrl: './video-page.component.html',
   styleUrl: './video-page.component.css'
 })
-export class VideoPageComponent {
+export class VideoPageComponent implements OnInit{
 
-  // user?: User = undefined;
+  user?: User = undefined;
+  videos?: Video[] = [];
+  loading: boolean = false;
   constructor(
     private authService: AuthService,
-    private router: Router){}
+    private router: Router,
+    private playListService: PlayListService,){
+      this.user = this.authService.currentUserLog;
+  }
+
+  ngOnInit(): void {
+    this.loadVideos();
+  }
+
+  loadVideos(){
+    this.loading = true;
+    this.playListService.getPlayList().subscribe({
+      next: value =>{
+        this.videos = value.videos;
+        this.loading = false;
+      },
+      error: err => {
+        this.loading = false;
+        console.error('Observable emitted an error: ' + err);
+      }
+    })
+  }
 
   onRegister(event: any){
     this.router.navigate(['/videos/register']);
+  }
+
+  onClickVideo(video: Video){
+    this.router.navigate(['/videos/edit'], { state: video });
   }
 
   getYoutubeThumbnail(url: string) {
@@ -26,7 +56,7 @@ export class VideoPageComponent {
         const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
         return thumbnailUrl;
     } else {
-        return null;
+        return 'assets/avatars/videoImage.png';
     }
 }
 }

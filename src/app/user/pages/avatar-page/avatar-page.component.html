@@ -1,5 +1,5 @@
 
-<div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
+<div *ngIf="!loading" class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
     <div class="mb-3 font-bold text-3xl">
         <span class="text-blue-600">Avatars</span>
     </div>
@@ -12,11 +12,15 @@
         </div>
     </div>
     <div class="grid">
-        <div class="col-12 md:col-4 mb-4 px-5" *ngFor="let avatar of user?.avatars" (click)="onAvatar(avatar)">
+        <div class="col-12 md:col-4 mb-4 px-5" *ngFor="let avatar of avatars" (click)="onAvatar(avatar)">
             <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px; cursor: pointer;">
                 <img [src]="'assets/avatars/' + avatar.avatar" alt="Image" height="50" class="mb-3" >
             </span>
             <div class="text-900 text-xl mb-3 font-medium">{{avatar.full_name}}</div>
         </div>
     </div>
+</div>
+
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center" *ngIf="loading">
+    <p-progressSpinner  ariaLabel="loading"></p-progressSpinner>
 </div>

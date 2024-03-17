@@ -16,6 +16,16 @@
             <label for="avatar">Avatar</label>
             <input id="avatar" formControlName="avatar" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
-        <button type="submit" pButton pRipple label="Registrarse" icon="pi pi-user-plus" class="w-full my-2"></button>
+        <!-- <div class="field col-12">
+            <p-dropdown formControlName="avatar" [options]="avatars" optionLabel="name" placeholder="Seleccione un Avatar">
+                <ng-template let-avatar pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                        <img [src]="'assets/avatars/' + avatar.url" style="width: 18px"/>
+                        <div>{{ avatar.name }}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div> -->
+        <button type="submit" pButton pRipple label="Registrar" icon="pi pi-user-plus" class="w-full my-2"></button>
     </div>
 </form>

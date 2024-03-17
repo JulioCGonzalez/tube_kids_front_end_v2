@@ -88,7 +88,8 @@ export class AuthService {
         id: user.id,
         country: user.country,
         avatars: user.avatars,
-        pin: user.pin
+        pin: user.pin,
+        play_lists: user.play_lists
       }
       return userRefreshed;
     }
