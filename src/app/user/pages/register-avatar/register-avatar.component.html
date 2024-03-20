@@ -3,29 +3,42 @@
         <div class="field col-12">
             <label for="nombreCompleto">Nombre Completo *</label>
             <input id="nombreCompleto" formControlName="full_name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <!-- Mostrar mensaje de error si el nombre es inválido -->
+            <div *ngIf="registerForm.get('full_name')?.hasError('required') && (registerForm.get('full_name')?.dirty || registerForm.get('full_name')?.touched)" class="text-danger mt-1">
+                El nombre es requerido.
+            </div>
+            <div *ngIf="registerForm.get('full_name')?.hasError('minlength') && (registerForm.get('full_name')?.dirty || registerForm.get('full_name')?.touched)" class="text-danger mt-1">
+                El nombre debe tener al menos 3 caracteres.
+            </div>
         </div>
         <div class="field col-12">
             <label for="pin">PIN *</label>
             <input id="pin" formControlName="pin" type="number" minlength="6" maxlength="6" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <!-- Mostrar mensaje de error si el PIN es inválido -->
+            <div *ngIf="registerForm.get('pin')?.hasError('invalidPinLength') && (registerForm.get('pin')?.dirty || registerForm.get('pin')?.touched)" class="text-danger mt-1">
+                El PIN debe tener exactamente 6 caracteres.
+            </div>
         </div>
         <div class="field col-12">
             <label for="edad">Edad</label>
             <input id="edad" formControlName="age" type="number" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <!-- Mostrar mensaje de error si la edad es inválida -->
+            <div *ngIf="registerForm.get('age')?.hasError('invalidAge') && (registerForm.get('age')?.dirty || registerForm.get('age')?.touched)" class="text-danger mt-1">
+                La edad debe ser menor o igual a 15 años.
+            </div>
         </div>
         <div class="field col-12">
-            <label for="avatar">Avatar</label>
-            <input id="avatar" formControlName="avatar" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
-        <!-- <div class="field col-12">
-            <p-dropdown formControlName="avatar" [options]="avatars" optionLabel="name" placeholder="Seleccione un Avatar">
-                <ng-template let-avatar pTemplate="item">
-                    <div class="flex align-items-center gap-2">
-                        <img [src]="'assets/avatars/' + avatar.url" style="width: 18px"/>
-                        <div>{{ avatar.name }}</div>
-                    </div>
-                </ng-template>
-            </p-dropdown>
-        </div> -->
+            <label>Avatar</label>
+            <div class="avatars">
+                <button type="button" class="avatar-label" (click)="selectAvatar('male.png')">
+                    <img [src]="'assets/avatars/male.png'" alt="Hombre" height="50" class="mb-3">
+                </button>
+                <button type="button" class="avatar-label" (click)="selectAvatar('female.png')">
+                    <img [src]="'assets/avatars/female.png'" alt="Mujer" height="50" class="mb-3">
+                </button>
+            </div>
+        </div>  
+        
         <button type="submit" pButton pRipple label="Registrar" icon="pi pi-user-plus" class="w-full my-2"></button>
     </div>
 </form>
