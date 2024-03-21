@@ -3,36 +3,40 @@
         <div class="field col-12">
             <label for="nombreCompleto">Nombre Completo *</label>
             <input id="nombreCompleto" formControlName="full_name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <!-- Mostrar mensaje de error si el nombre es inválido -->
+            <div *ngIf="editForm.get('full_name')?.hasError('required') && (editForm.get('full_name')?.dirty || editForm.get('full_name')?.touched)" class="text-danger mt-1">
+                El nombre es requerido.
+            </div>
         </div>
         <div class="field col-12">
             <label for="pin">PIN *</label>
             <input id="pin" formControlName="pin" type="number" minlength="6" maxlength="6" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <!-- Mostrar mensaje de error si el PIN es inválido -->
+            <div *ngIf="editForm.get('pin')?.hasError('minlength') && (editForm.get('pin')?.dirty || editForm.get('pin')?.touched)" class="text-danger mt-1">
+                El PIN debe tener exactamente 6 caracteres.
+            </div>
         </div>
         <div class="field col-12">
-            <label for="edad">Edad</label>
+            <label for="edad">Edad *</label>
             <input id="edad" formControlName="age" type="number" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            <!-- Mostrar mensaje de error si la edad es inválida -->
+            <div *ngIf="editForm.get('age')?.hasError('required') && (editForm.get('age')?.dirty || editForm.get('age')?.touched)" class="text-danger mt-1">
+                La edad es requerida.
+            </div>
         </div>
         <div class="field col-12">
-            <label for="avatar">Avatar</label>
-            <input id="avatar" formControlName="avatar" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
-        <!-- <div class="field col-12">
-            <p-dropdown formControlName="avatar" [options]="avatars" optionLabel="name" placeholder="Seleccione un Avatar">
-                <ng-template pTemplate="avatarInfo">
-                    <div class="flex align-items-center gap-2" *ngIf="avatarInfo">
-                        <img [src]="'assets/avatars/' + avatarInfo.url" style="width: 18px"/>
-                        <div>{{ avatarInfo.name }}</div>
-                    </div>
-                </ng-template>
-                <ng-template let-avatar pTemplate="item">
-                    <div class="flex align-items-center gap-2">
-                        <img [src]="'assets/avatars/' + avatar.url" style="width: 18px"/>
-                        <div>{{ avatar.name }}</div>
-                    </div>
-                </ng-template>
-            </p-dropdown>
-        </div> -->
+            <label>Avatar</label>
+            <div class="avatars">
+                <div *ngFor="let avatar of avatars" class="avatar-option">
+                    <input type="radio" formControlName="avatar" [value]="avatar.url" [id]="avatar.name" class="hidden-input">
+                    <label [for]="avatar.name" class="avatar-label" (click)="avatarInfo = avatar">
+                        <img [src]="'assets/avatars/' + avatar.url" alt="{{ avatar.name }}" class="avatar-image">
+                    </label>
+                </div>
+            </div>
+        </div>  
+        
         <button type="submit" pButton pRipple label="Editar" icon="pi pi-user-plus" class="w-full my-2"></button>
-        <p-button [icon]="'pi pi-trash'" severity="danger" pRipple label="Eliminar" class="w-full" (onClick) = "onDelete($event)"></p-button>
+        <p-button [icon]="'pi pi-trash'" severity="danger" pRipple label="Eliminar" class="w-full" (onClick)="onDelete($event)"></p-button>
     </div>
 </form>
