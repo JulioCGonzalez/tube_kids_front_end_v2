@@ -9,24 +9,26 @@ import { AvatarService } from '../../../shared/services/avatar.service';
 @Component({
   selector: 'app-avatar-page',
   templateUrl: './avatar-page.component.html',
-  styleUrl: './avatar-page.component.css'
+  styleUrls: ['./avatar-page.component.css']
 })
 export class AvatarPageComponent {
   loading: boolean = false;
   avatars?: Avatar[] = [];
+  
   constructor(
     private authService: AuthService,
     private avatarService: AvatarService,
-    private router: Router){}
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadAvatars();
   }
 
-  loadAvatars(){
+  loadAvatars() {
     this.loading = true;
     this.avatarService.getAvatarsByUser().subscribe({
-      next: avatars =>{
+      next: avatars => {
         this.avatars = avatars;
         this.loading = false;
       },
@@ -34,13 +36,14 @@ export class AvatarPageComponent {
         this.loading = false;
         console.error('Observable emitted an error: ' + err);
       }
-    })
+    });
   }
 
-  onRegister(event: any){
+  onRegister(event: any) {
     this.router.navigate(['/users/register']);
   }
-  onAdminVideos(event: any){
+
+  onAdminVideos(event: any) {
     Swal.fire({
       title: "Introduzca el pin",
       input: "password",
@@ -52,9 +55,9 @@ export class AvatarPageComponent {
       showLoaderOnConfirm: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        if(result.value && result.value == this.authService.currentUserLog?.pin){
+        if (result.value && result.value == this.authService.currentUserLog?.pin) {
           this.router.navigate(['/videos']);
-        }else{
+        } else {
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -63,10 +66,9 @@ export class AvatarPageComponent {
         }
       }
     });
-    
   }
 
-  onAvatar(avatar: Avatar){
+  onAvatar(avatar: Avatar) {
     Swal.fire({
       title: "Introduzca su pin de usuario",
       html:
@@ -83,11 +85,9 @@ export class AvatarPageComponent {
         const user = (<HTMLInputElement>document.getElementById('swal-input2')).value;
         if (user === "user" && parseInt(pin, 10) === this.authService.currentUserLog?.pin) {
           this.router.navigate(['/users/edit'], { state: avatar });
-        }
-        else if(user === "avatar" && parseInt(pin, 10) === avatar.pin){
+        } else if (user === "avatar" && parseInt(pin, 10) === avatar.pin) {
           this.router.navigate(['/users/playlist'], { state: avatar });
-        }
-        else{
+        } else {
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -96,5 +96,11 @@ export class AvatarPageComponent {
         }
       }
     });
+  }
+
+  // Función para el nuevo botón "Agregar Playlist"
+  onAddPlaylist(event: any) {
+    // Aquí puedes agregar la lógica para el botón "Agregar Playlist"
+    console.log('Botón "Agregar Playlist" clickeado');
   }
 }

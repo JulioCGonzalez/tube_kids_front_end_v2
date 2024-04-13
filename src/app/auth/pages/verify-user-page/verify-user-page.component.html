@@ -1,0 +1,11 @@
+<div class="surface-section text-700 text-center" *ngIf="!loading">
+    <div class="text-blue-600 font-bold mb-3">Tube Kids</div>
+    <div [ngClass]="{'text-green-600': verifiedUser, 'text-red-600': !verifiedUser}" class="font-bold text-5xl mb-3">
+        {{ verifiedUser ? 'El usuario ha sido verificado' : 'El usuario no ha podido ser verificado' }}
+    </div>
+    <p-button label="Login" [rounded]="true" (click)="goToLoginPage()"></p-button>
+</div>
+
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center" *ngIf="loading">
+    <p-progressSpinner  ariaLabel="loading"></p-progressSpinner>
+</div>

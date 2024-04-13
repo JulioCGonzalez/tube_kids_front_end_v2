@@ -50,6 +50,14 @@ export class AuthService {
     return this.http.post<User>(`${ this.baseUrl }/api/register`, user);
   }
 
+  verifyUser( id:number ):Observable<any> {
+    return this.http.post<any>(`${ this.baseUrl }/api/verifyuser/${id}`, {});
+  }
+
+  checkUser( id:number, code: string ):Observable<any> {
+    return this.http.post<any>(`${ this.baseUrl }/api/checkuser/${id}/code/${code}`, {});
+  }
+
 
   logout() {
     this.user = undefined;
@@ -89,6 +97,7 @@ export class AuthService {
         country: user.country,
         avatars: user.avatars,
         pin: user.pin,
+        sms_code:user.sms_code,
         play_lists: user.play_lists
       }
       return userRefreshed;

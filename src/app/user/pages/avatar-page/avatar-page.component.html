@@ -1,14 +1,17 @@
-
 <div *ngIf="!loading" class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
     <div class="mb-3 font-bold text-3xl">
         <span class="text-blue-600">Avatars</span>
     </div>
     <div class="formgrid grid">
         <div class="field col">
-            <p-button label="Registrar Avatar" icon="pi pi-user-plus" iconPos="right" size="small" (onClick) = "onRegister($event)"></p-button>
+            <p-button label="Registrar Avatar" icon="pi pi-user-plus" iconPos="right" size="small" (onClick)="onRegister($event)"></p-button>
         </div>
         <div class="field col">
-            <p-button label="Administrar Videos"  icon="pi pi-youtube" iconPos="right" size="small" (onClick) = "onAdminVideos($event)"></p-button>
+            <p-button label="Administrar Videos" icon="pi pi-youtube" iconPos="right" size="small" (onClick)="onAdminVideos($event)"></p-button>
+        </div>
+        <!-- Nuevo botón para agregar playlist -->
+        <div class="field col">
+            <p-button label="Agregar Playlist" icon="pi pi-plus-circle" iconPos="right" size="small" (onClick)="onAddPlaylist($event)"></p-button>
         </div>
     </div>
     <div class="grid">

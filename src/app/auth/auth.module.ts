@@ -7,13 +7,15 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
+import { VerifyUserPageComponent } from './pages/verify-user-page/verify-user-page.component';
 
 
 @NgModule({
   declarations: [
     LoginPageComponent,
     LayoutPageComponent,
-    RegisterComponent
+    RegisterComponent,
+    VerifyUserPageComponent
   ],
   imports: [
     CommonModule,
