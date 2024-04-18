@@ -101,6 +101,8 @@ export class AvatarPageComponent {
   // Función para el nuevo botón "Agregar Playlist"
   onAddPlaylist(event: any) {
     // Aquí puedes agregar la lógica para el botón "Agregar Playlist"
-    console.log('Botón "Agregar Playlist" clickeado');
+    this.router.navigate(['/playlists']);
+    
+
   }
 }

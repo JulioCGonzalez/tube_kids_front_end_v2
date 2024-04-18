@@ -1,1 +1,22 @@
-<p>play-list-page works!</p>
+<div *ngIf="!loading" class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center">
+    <div class="mb-3 font-bold text-3xl">
+        <span class="text-blue-600">Playlist</span>
+    </div>
+    <div class="formgrid grid">
+        <div class="field col">
+            <p-button label="Agregar Playlist"  icon="pi pi-plus" iconPos="right" size="small" (onClick) = "onRegister($event)"></p-button>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-12 md:col-4 mb-4 px-5" *ngFor="let playlist of playlists" (click)="onClickPlaylist(playlist)">
+            <span class="p-3 shadow-2 mb-3 inline-block surface-card" style="border-radius: 10px; cursor: pointer;">
+                <h3>{{playlist.videos?.length}}</h3>
+            </span>
+            <div class="text-900 text-xl mb-3 font-medium">{{playlist.name}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8 text-center" *ngIf="loading">
+    <p-progressSpinner  ariaLabel="loading"></p-progressSpinner>
+</div>

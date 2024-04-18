@@ -19,4 +19,10 @@ export class PlayListService {
     });
     return this.http.get<PlayList>(`${this.baseUrl}/api/playlists`, { headers });
   }
+  getPlaylistByUser(): Observable<PlayList[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+    return this.http.get<PlayList[]>(`${this.baseUrl}/api/playlistsbyuser`, { headers });
+  }
 }
