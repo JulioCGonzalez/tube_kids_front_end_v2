@@ -20,6 +20,7 @@ export class RegisterComponent {
     country:[''],
     birth_date:[''],
     pin:[''],
+    phone_number:[''],
   });
 
   constructor( private fb: FormBuilder,

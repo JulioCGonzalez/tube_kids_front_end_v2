@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '',
     component: LayoutPageComponent,
     children: [
-      { path: 'videos/:playlistid', component: VideoPageComponent },
+      { path: 'videos', component: VideoPageComponent },
       { path: 'register', component: RegisterVideoPageComponent },
       { path: 'edit', component: EditVideoPageComponent },
       { path: '**', redirectTo: 'videos' },

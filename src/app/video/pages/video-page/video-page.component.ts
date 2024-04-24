@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../auth/interfaces/user.interface';
 import { Video } from '../../../shared/models/video';
 import { PlayListService } from '../../../shared/services/play-list.service';
-
+import { PlayList } from '../../../shared/models/playList';
 @Component({
   selector: 'app-video-page',
   templateUrl: './video-page.component.html',
@@ -15,26 +15,23 @@ export class VideoPageComponent implements OnInit{
   user?: User = undefined;
   videos?: Video[] = [];
   loading: boolean = false;
-  playlistid?:string = undefined;
+  playlist?:any = undefined;
   constructor(
     private authService: AuthService,
+    private route: ActivatedRoute,
     private router: Router,
-    private playListService: PlayListService,
-    private route: ActivatedRoute){
+    private playListService: PlayListService,){
       this.user = this.authService.currentUserLog;
+      this.playlist = this.router.getCurrentNavigation()?.extras.state;
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.playlistid = params['id'];
-      // Now you can use this.videoId in your component
-    });
     this.loadVideos();
   }
   
   loadVideos(){
     this.loading = true;
-    this.playListService.getPlayList().subscribe({
+    this.playListService.getPlaylistById(this.playlist?.id!).subscribe({
       next: value =>{
         this.videos = value.videos;
         this.loading = false;
@@ -47,7 +44,8 @@ export class VideoPageComponent implements OnInit{
   }
 
   onRegister(event: any){
-    this.router.navigate(['/videos/register']);
+    this.router.navigate(['/videos/register'], { state: {playlistid:this.playlist?.id} });
+    
   }
 
   onClickVideo(video: Video){

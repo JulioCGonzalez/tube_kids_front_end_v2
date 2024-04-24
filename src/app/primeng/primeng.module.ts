@@ -10,6 +10,7 @@ import { TableModule } from 'primeng/table';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [],
   imports: [
@@ -23,7 +24,8 @@ import { DropdownModule } from 'primeng/dropdown';
     TableModule,
     ProgressSpinnerModule,
     RadioButtonModule,
-    DropdownModule
+    DropdownModule,
+    MultiSelectModule
   ],
   exports: [
     MenubarModule,
@@ -35,7 +37,8 @@ import { DropdownModule } from 'primeng/dropdown';
     TableModule,
     ProgressSpinnerModule,
     RadioButtonModule,
-    DropdownModule
+    DropdownModule,
+    MultiSelectModule
   ]
 })
 export class PrimengModule { }

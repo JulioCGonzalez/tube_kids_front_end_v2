@@ -22,12 +22,10 @@ export class LoginPageComponent {
     private http: HttpClient){}
 
   onLogin(){
-    debugger
     this.authService.login(this.logInForm.value.email, this.logInForm.value.password).subscribe({
       next: value =>{
         this.authService.me().subscribe({
           next: value =>{
-            debugger
             this.lookupCodeUser();
           },
           error: err => console.error('Observable emitted an error: ' + err),

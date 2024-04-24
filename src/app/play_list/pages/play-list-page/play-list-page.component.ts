@@ -42,7 +42,7 @@ export class PlayListPageComponent {
   }
 
   onRegister(event: any){
-    this.router.navigate(['/playlist/register']);
+    this.router.navigate(['/playlists/register']);
   }
 
   onClickPlaylist(playlist: PlayList){
@@ -60,9 +60,9 @@ export class PlayListPageComponent {
       if (result.isConfirmed) {
         const option = (<HTMLInputElement>document.getElementById('swal-input2')).value;
         if (option === "edit") {
-          this.router.navigate(['/playlist/edit'], { state: playlist });
+          this.router.navigate(['/playlists/edit'], { state: playlist });
         } else if (option === "add") {
-          //this.router.navigate(['/playlist/add'], { state: option });
+          this.router.navigate(['/videos/videos'], { state: playlist });
         } else {
           Swal.fire({
             icon: "error",
@@ -90,7 +90,7 @@ export class PlayListPageComponent {
           if (value === "edit") {
             this.router.navigate(['/playlist/edit']);
           } else {
-            this.router.navigate(['/vide/']);
+            this.router.navigate(['/videos/']);
           }
         });
       }

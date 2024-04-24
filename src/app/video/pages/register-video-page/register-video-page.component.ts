@@ -18,15 +18,18 @@ export class RegisterVideoPageComponent {
     video_name:[''],
     url:[''],
   });
-
+  playlistid:any;
   constructor( private fb: FormBuilder,
     private videoService: VideoService,
     private authService: AuthService,
-    private router: Router){}
+    private router: Router){
+      this.playlistid = this.router.getCurrentNavigation()?.extras.state;
+    }
 
     onRegister(){
       if (this.registerForm.valid) {
         let videoData: Video = this.registerForm.value;
+        videoData.play_list_id = this.playlistid.playlistid;
         this.videoService.registerVideo(videoData).subscribe({
           next: value =>{
             Swal.fire({

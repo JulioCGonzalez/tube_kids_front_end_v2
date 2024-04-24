@@ -12,6 +12,7 @@ export interface User {
     pin?: number;
     authorization?: Auth;
     play_lists?: PlayList[];
+    phone_number?: string;
     sms_code?: string;
 }
 

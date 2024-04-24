@@ -1,1 +1,17 @@
-<p>register-play-list-page works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()" autocomplete="off" class="p-fluid">
+    <div class="formgrid grid">
+        <div class="field col-12">
+            <p-button [icon]="'pi pi-arrow-left'" [size]="'small'" (onClick) = "onClickBack($event)"></p-button>
+        </div>
+        <div class="field col-12">
+            <label for="nombrePlaylist">Nombre del playlist *</label>
+            <input id="nombrePlaylist" formControlName="name" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+        <div class="field col-12">
+                <p-multiSelect [options]="user?.avatars" formControlName="avatars" optionLabel="full_name" placeholder="Seleccione un Avatar"></p-multiSelect>
+        </div>
+        
+        <button type="submit" pButton pRipple label="Guardar" icon="pi pi-user-plus" class="w-full my-2"></button>
+    </div>
+</form>
